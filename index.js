@@ -1,40 +1,11 @@
-const http = require('http');
+const consign = require('consign');
 
-let server = http.createServer((req, res) => {
+let app = express();
 
-    console.log('URL:', req.url);
-    console.log('METHOD:', req.method);
-    
-    switch (req.url) {
+consign().include('routes').into(app);
 
-        case '/':
+app.listen(3000, '127.0.0.1', () => {
 
-        res.statusCode = 200;
-        res.setHeader('Content-Type', 'text/html');
-        res.end('<h1>Olá</h1>');
-
-        break;
-
-        case'/users':
-
-        res.statusCode = 200;
-        res.setHeader('Content-Type', 'applicatipn/json');
-        res.end(JSON.stringify({
-            users:[{
-                name: 'Hcode',
-                email: 'contato@hcode.com.br',
-                id: 1
-            }]
-        }));
-
-        break;
-
-    };
-
-});
-
-server.listen(3000, '127.0.0.1', () => {
-
-    console.log('Servidor rodando com sucesso!');
+    console.log("servidor rodando!");
 
 });
